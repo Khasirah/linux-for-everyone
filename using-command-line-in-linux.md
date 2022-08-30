@@ -62,7 +62,7 @@ $ info {command}
 | `mkdir -p dir-name/{folderName}` | create folder inside *dir-name* with {folderName} |
 | `touch {fileName}` | create file if it doesn't exist. otherwise change timestamp of the file to current time |
 > example: <br/>
-> -`cp -R Documents Pictures` <br/>
+> - `cp -R Documents Pictures` <br/>
 > will copy folder "Documents" to folder "Pictures" <br/>
 > - `cp -R Documents/ Pictures` <br/>
 > will copy contents of "Documents" include subfolder to "Pictures" <br/> the "/" means that we command to pc copy contents of the folder
