@@ -66,3 +66,4 @@ $ info {command}
 > will copy folder "Documents" to folder "Pictures" <br/>
 > - `cp -R Documents/ Pictures` <br/>
 > will copy contents of "Documents" include subfolder to "Pictures" <br/> the "/" means that we command to pc copy contents of the folder
+
