@@ -61,7 +61,7 @@ $ info {command}
 | `mkdir {folderName}` | create folder with {folderName} |
 | `mkdir -p dir-name/{folderName}` | create folder inside *dir-name* with {folderName} |
 | `touch {fileName}` | create file if it doesn't exist. otherwise change timestamp of the file to current time |
-> example: 
+> example: <br/>
 > -`cp -R Documents Pictures` <br/>
 > will copy folder "Documents" to folder "Pictures" <br/>
 > - `cp -R Documents/ Pictures` <br/>
