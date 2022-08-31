@@ -33,8 +33,7 @@ $ info {command}
 | `pwd` | get full path of the current working directory |
 | `cd` | navigate to the current user's home directory |
 | `cd {destination}` | navigate to destination that you enter |
-> example: `$ cd Documents/folder/folderfolder` <br/>
-> this will navigate working directory to `Documents/folder/folderfolder`
+> example: `$ cd Documents/folder/folderfolder` this will navigate working directory to `Documents/folder/folderfolder`
 
 ### Listing files insed a directory 
 | Command | Description |
@@ -46,7 +45,7 @@ $ info {command}
 | `ls -lh` | list the file size in human readable format |
 | `ls -lR` | show all the subdirectories recursively |
 | `ls -l {directory}` | list the file and directory in {directory} that you pass in
-> example : `ls -l Documents/folder` <br/>
+> example : `ls -l Documents/folder`
 > this command will list all files and directory in `Documents/folder`
 
 ### File/directory create, copy, and remove
@@ -61,9 +60,55 @@ $ info {command}
 | `mkdir {folderName}` | create folder with {folderName} |
 | `mkdir -p dir-name/{folderName}` | create folder inside *dir-name* with {folderName} |
 | `touch {fileName}` | create file if it doesn't exist. otherwise change timestamp of the file to current time |
-> example: <br/>
-> - `cp -R Documents Pictures` <br/>
-> will copy folder "Documents" to folder "Pictures" <br/>
-> - `cp -R Documents/ Pictures` <br/>
-> will copy contents of "Documents" include subfolder to "Pictures" <br/> the "/" means that we command to pc copy contents of the folder
+> example:
+> - `cp -R Documents Pictures` 
+> will copy folder "Documents" to folder "Pictures" 
+> - `cp -R Documents/ Pictures` 
+> will copy contents of "Documents" include subfolder to "Pictures" the "/" means that we command to pc copy contents of the folder
+### File/directory permission and groups
+| Command | Description |
+| ---- | ---- |
+| `chmod {spesification} {fileName}` | change the file permission. spesification, u = user, g = group, o = other, + add permission, - remove permission, r = read, w = write, x = execute |
+| `chmod -R {spesification} {folderName}` | change the folder permission recursively, to change everything within the folder |
+| `chmod go=+r {fileName}` | add read permission to group and other to {fileName} |
+| `chmod a +rwx {fileName}` | add read, write, execute {fileName} to all user |
+| `chmod go -r {fileName}` | remove read permission from group and other |
+| `chown {user1} {fileName}` | change ownership of a file to user: user1 |
+| `chgrp {grpOwner} {fileName}` | change primary group ownership of file: {fileName} to {grpOwner} |
+| `chgrp -R {grpOwner} {folderName}` | change primary group ownership of {folderName} recursively to group: {grpOwner}, this will change **everything** within the folder |
+| `chown {user}:{group} {fileName}` | change ownership and primary group at the same time |
 
+#### chmod with number
+we can use `chmod` with number instead of character that make use confuse
+- use `ls -lh` to know detail of contents 
+- at left side we see code like:
+```
+-rw-r--r-- 1 user users 70 Jul 22 13:36 someFile.txt
+drwxrw-r-x 2 user users 4096 Jul 21 07:18 test
+```
+- let me explain left side
+    - "-" or "d" at beginning means type the contents "-" = file, "d" = directory
+    - "rwx" for user permission
+    - "rw-" for group permission
+    - "r-x" for other permission
+- now we give "1" under character
+```
+d rwx rw- r-x 2 user users 4096 Jul 21 07:18 test 
+  111 110 101
+```
+- and then change every 3 digit to 1 digit use this table:
+
+| binary | decimal |
+| ---- | ---- |
+| 000 | 0 |
+| 001 | 1 |
+| 010 | 2 |
+| 011 | 3 |
+| 100 | 4 |
+| 101 | 5 |
+| 110 | 6 |
+| 111 | 7 |
+
+from table above we can convert, "111 110 101" to 765
+- now use thu number to command 
+`chmod 765 {fileName}` this will change the {fileName} to `rwxrw-r-x` or give user all permission, group add read and write, other read and execute.
